@@ -15,24 +15,32 @@ namespace Palindrome
         {
             string str = Console.ReadLine();
 
-            //string resultString="";
-            //int max = 0;
+
             bool Palindrome = true;
 
             string delSpaces = str.Replace(" ", "");
             string resultString = delSpaces.ToUpper();
 
             char[] s = resultString.ToCharArray();
+
+
             for (int i = 0; i < s.Length; i++)
             {
-                if (s[i] != s.Length - i) Palindrome = false;
+                //Console.WriteLine(s[i]);
 
-                Console.WriteLine(s[i]);
+                int a = s.Length - 1 - i; //перевернутая строка
+
+                Console.WriteLine(s[a]);
+
+                if (s[i] != s[a]) Palindrome = false;
+
             }
 
+            if (Palindrome) Console.WriteLine("Строка является палиндромом");
+            else Console.WriteLine("Строка не является палиндромом");
 
 
-            Console.WriteLine(Palindrome);
+
             Console.WriteLine();
             Console.ReadKey();
         }
