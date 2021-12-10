@@ -12,6 +12,7 @@ namespace Lab6_Strings
          * Знаки препинания не используются. Найти самое длинное слово в строке. */
         static void Main(string[] args)
         {
+            Console.WriteLine("Введите строку для поиска самого длинного слова");
             string str = Console.ReadLine();
             string[] stringArray = str.Split();
             string longestWord = "";

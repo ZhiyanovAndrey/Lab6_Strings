@@ -13,8 +13,8 @@ namespace Palindrome
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Введите строку для проверки является ли строка палиндромом");
             string str = Console.ReadLine();
-
 
             bool Palindrome = true;
 
