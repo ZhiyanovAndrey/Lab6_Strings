@@ -12,37 +12,32 @@ namespace RemoveText
     {
         static void Main(string[] args)
         {
-            string s = "Эта статья о том, как {начинающим разработчикам} оформить профиль на GitHub";
-            string resultString = "";
-            //string s=line.Split();
+            string s = "Эта статья о том, как {начинающим {раз}работчикам} оформить {профиль на GitHub";
+            int[] a = new int[s.Length]; //массив для хранения номеров индексов длиною с первоначальный
+            int ind = 0;
+            int i = 0;
             Console.WriteLine("Первоначальная строка: {0}", s);
 
-            
-            int foundS1 = s.IndexOf("{");
-            int foundS2 = s.IndexOf("}", foundS1 + 1);
-
-            if (foundS1 != foundS2 && foundS1 >= 0)
+            while (i < s.Length)
             {
-
-                resultString = s.Remove(foundS1, foundS2 - foundS1 + 1);
-
-                Console.WriteLine("Удален текст взятый в фигурные скобки: {0}", resultString);
+                if (s[i] == '{')
+                    a[ind++] = i;
+                if (s[i] == '}' && ind > 0)   //если есть закрытая и хоть одна открытая скобка
+                {
+                    int startIndex = a[ind - 1];
+                    int count = i - a[ind - 1] + 1;
+                    s = s.Remove(startIndex, count);
+                    i = startIndex - 1;
+                    ind--;
+                }
+                i++;
             }
 
 
-            int S1 = resultString.IndexOf("{");
-            int S2 = resultString.IndexOf("}", S1 + 1);
+            Console.WriteLine("Удален текст взятый в фигурные скобки: {0}", s);
 
-            if (S1 != S2 && S1 >= 0)
-            {
-
-                resultString = resultString.Remove(S1, S2 - S1 + 1);
-
-                Console.WriteLine("After removing the middle name, we are left with '{0}'", resultString);
-            }
             Console.ReadKey();
         }
     }
 }
-/*Можно ли решить задачу методами String, не соображу как добавить цикл, выполнил только для двух повторений?
- Или надо применять StringBuilder. (есть готовое решение, но захотелось помучаться!)*/
+/*Спасибо большое Екатерине Швец за подробное описание этой задачи на вебинаре 11.12.2021*/
